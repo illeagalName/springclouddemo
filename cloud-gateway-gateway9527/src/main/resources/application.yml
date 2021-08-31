@@ -1,0 +1,33 @@
+server:
+  port: 9527
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: cloud-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: get_route
+          uri: lb://CLOUD-PAYMENT-SERVICE-8001
+          predicates:
+            - Path=/payment/get/**
+        - id: timeout_route
+          uri: lb://CLOUD-PAYMENT-SERVICE-8002
+          predicates:
+            - Path=/payment/timeout/**
+
+eureka:
+  instance:
+    hostname: cloud-gateway-service
+    instance-id: gateway-service
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/

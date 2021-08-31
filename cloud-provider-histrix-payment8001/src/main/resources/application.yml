@@ -1,0 +1,28 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: cloud-payment-histrix-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://123.56.25.210:3306/db2021?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: yang
+    password: ASdf!@
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sunday.entities
+  configuration:
+    map-underscore-to-camel-case: true
+
+eureka:
+  client:
+    register-with-eureka: true #是否注册到eureka
+    fetch-registry: true  #表示不需要检索服务
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/  # 与eureka交互的地址查询服务和注册服务的地址
+  instance:
+    instance-id: payment-histrix-8001
+    prefer-ip-address: true #访问路径显示ip

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>springclouddemo</artifactId>
+        <groupId>com.sunday</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cloud-gateway-gateway9527</artifactId>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <!--
+                有错误：Spring MVC found on classpath, which is incompatible with Spring Cloud Gateway
+                提示 Action: Please set spring.main.web-application-type=reactive or remove spring-boot-starter-web dependency.
+                排除依赖后还是报错，可能是没排除干净，但是我找不到哪里还需要排除的
+                因此只能按照第一个提示设置了，spring.main.web-application-type=reactive
+                嘿，启动成功了，gateway路由什么的都正常，只能这样了
+                如果有其他的好的解决方式，请联系我
+            -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sunday</groupId>
+            <artifactId>cloud-common</artifactId>
+        </dependency>
+    </dependencies>
+</project>
