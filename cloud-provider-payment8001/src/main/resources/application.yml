@@ -27,4 +27,3 @@ eureka:
   instance:
     instance-id: payment8001
     prefer-ip-address: true #访问路径显示ip
-    hostname: payment-service
