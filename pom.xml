@@ -23,6 +23,8 @@
         <module>cloud-provider-histrix-payment8001</module>
         <module>cloud-consumer-order80-hystrix</module>
         <module>cloud-gateway-gateway9527</module>
+        <module>cloud-config-center3344</module>
+        <module>cloud-config-client3355</module>
     </modules>
     <packaging>pom</packaging>
 
