@@ -1,0 +1,30 @@
+server:
+  port: 8802
+spring:
+  application:
+    name: cloud-stream-consumer
+  rabbitmq:
+    host: 123.56.25.210   #rabbitmq 服务器的地址
+    port: 5672           #rabbitmq 服务器端口
+    username: yang       #rabbitmq 用户名
+    password:           #rabbitmq 密码
+    virtual-host: /       #虚拟路径
+  cloud:
+    stream:
+      bindings:        #服务的整合处理
+        consumeMsg-in-0:    #这个是消息通道的名称 --->输出通道
+          destination: studyExchange    #exchange名称,交换模式默认是topic;把SpringCloud stream的消息输出通道绑定到RabbitMQ的studyExchange交换器。
+          group: A  #分组是为了避免消息重复消费，同一组的consumer处于竞争关系，保证只有一个能消费消息
+        consume2Msg-in-0: #这个是消息通道的名称 --->输出通道
+          destination: study2Exchange
+    function:
+      definition: consumeMsg;consume2Msg
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 5 #超过了5秒的间隔
+    lease-renewal-interval-in-seconds: 2 #设置心跳的时间间隔
+    instance-id: consumer-8802.com
+    prefer-ip-address: true #访问的路径变为IP地址

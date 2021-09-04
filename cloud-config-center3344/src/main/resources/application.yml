@@ -17,7 +17,7 @@ spring:
     host: 123.56.25.210
     port: 5672
     username: yang
-    password: 
+    password:
 
 eureka:
   client:
