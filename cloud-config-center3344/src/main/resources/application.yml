@@ -10,10 +10,25 @@ spring:
         git:
           uri: https://github.com/illeagalName/springconfig.git
           search-paths: /**
-          username: 用户名
-          password: 2021年8月后需要开通access token
+          username:
+          password:
       label: master
+  rabbitmq:
+    host: 123.56.25.210
+    port: 5672
+    username: yang
+    password: 
+
 eureka:
   client:
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh' # busrefresh 也行，但是curl -X POST 'http://localhost:3344/actuator/busrefresh/cloud-config-client:3355'  这里面必须是busrefresh
+  endpoint:
+    health:
+      show-details: always

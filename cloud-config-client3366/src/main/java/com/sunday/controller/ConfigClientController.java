@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConfigClientController {
     @Value("${a.b}")
     private String configInfo;
+    @Value("${server.port}")
+    private String port;
 
     @GetMapping("configInfo")
     public String getConfigInfo(){
-        return configInfo;
+        return configInfo +"\n\n" + port;
     }
 }
