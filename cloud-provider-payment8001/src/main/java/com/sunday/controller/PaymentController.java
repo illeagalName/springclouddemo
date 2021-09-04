@@ -66,4 +66,9 @@ public class PaymentController {
         }
         return R.success(discoveryClient);
     }
+
+    @GetMapping("zipkin")
+    public String paymentZipkin(){
+        return "Hi, test zipKin ,you can see see  ";
+    }
 }

@@ -3,7 +3,18 @@ server:
 
 spring:
   application:
-    name: cloud-payment-service-8001
+    name: cloud-payment-service
+  zipkin:
+    base-url: http://localhost:9411
+    # 支持通过服务发现来定位host name
+    locator:
+      discovery:
+        enabled: true
+  sleuth:
+    sampler:
+      # zipkin  抽样比例(取值0~1之间) 在默认情况下，该值为0.1
+      probability: 1.0
+
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
