@@ -1,0 +1,23 @@
+server:
+  port:  9002
+
+spring:
+  profiles:
+    active: test
+  application:
+    name: cloud-payment-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 123.56.25.210:8848
+        namespace: 0c6bb070-442b-4a5d-902e-161d52f48206
+      config:
+        server-addr: 123.56.25.210:8848
+        file-extension: yml
+        namespace: 0c6bb070-442b-4a5d-902e-161d52f48206
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

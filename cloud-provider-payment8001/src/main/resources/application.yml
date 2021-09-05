@@ -7,9 +7,6 @@ spring:
   zipkin:
     base-url: http://localhost:9411
     # 支持通过服务发现来定位host name
-    locator:
-      discovery:
-        enabled: true
     sender:
       type: rabbit
     enabled: true
@@ -21,7 +18,7 @@ spring:
     addresses: 123.56.25.210
     port: 5672
     username:
-    password: 
+    password:
     virtual-host: sleuth
 
   datasource:

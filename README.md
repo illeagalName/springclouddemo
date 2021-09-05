@@ -28,4 +28,30 @@ zipkin术语：
 
 过段时间看看能否集成es，将日志打到es中
 
+2021年09月05日已经成功集成es
 
+![img_1.png](img_1.png)
+
+nacos支持AP和CP模式的切换(默认AP原则)
+
+`curl -X PUT '$NACOS_SERVER:8848/nacos/v1/ns/operator/switches?entry=serverMode&value=CP'`
+
+同时微服务的bootstrap.properties 需配置如下选项指明注册为临时/永久实例
+AP模式不支持数据一致性，所以只支持服务注册的临时实例，CP模式支持服务注册的永久实例，满足配置文件的一致性
+
+`#false为永久实例，true表示临时实例开启，注册为临时实例`
+
+`spring.cloud.nacos.discovery.ephemeral=false`
+
+配置nacos 的config遇到的坑真多
+
+1.首先cloud 2020之后的版本，需要引入bootstrap的依赖才能使用bootstrap.yml
+
+       <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+2.正常启动后又遇到[NACOS Exception httpPost] currentServerAddr: http://123.56.25.210:8848
+
+    按照github issue的解决方法 就是把clashX关掉即可，一般不翻墙的可能还遇不到，卧槽
