@@ -13,8 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version: 1.0
  */
 @SpringBootApplication
-public class OrderMain2001 {
+public class SeataOrderMain2001 {
     public static void main(String[] args) {
-        SpringApplication.run(OrderMain2001.class, args);
+        SpringApplication.run(SeataOrderMain2001.class, args);
     }
 }

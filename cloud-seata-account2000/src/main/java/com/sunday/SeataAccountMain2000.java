@@ -13,8 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version: 1.0
  */
 @SpringBootApplication
-public class AccountMain2000 {
+public class SeataAccountMain2000 {
     public static void main(String[] args) {
-        SpringApplication.run(AccountMain2000.class, args);
+        SpringApplication.run(SeataAccountMain2000.class, args);
     }
 }
