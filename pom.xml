@@ -34,7 +34,9 @@
         <module>cloud-consumer-order80-nacos</module>
         <module>cloud-sentinel-service8401</module>
         <module>cloud-netty-socket</module>
+        <module>cloud-seata-account2000</module>
         <module>cloud-seata-order2001</module>
+        <module>cloud-seata-storage2002</module>
     </modules>
     <packaging>pom</packaging>
 

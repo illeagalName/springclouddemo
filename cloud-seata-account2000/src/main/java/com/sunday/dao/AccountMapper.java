@@ -1,7 +1,10 @@
 package com.sunday.dao;
 
+import com.sunday.entities.domain.AccountDO;
 import com.sunday.entities.domain.OrderDO;
+import com.sunday.entities.domain.StorageDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @ProjectName: springclouddemo
@@ -13,8 +16,8 @@ import org.apache.ibatis.annotations.Mapper;
  * @Version: 1.0
  */
 @Mapper
-public interface OrderMapper {
-    int insertOrder(OrderDO orderDO);
+public interface AccountMapper {
+    int changeAccount(AccountDO accountDO);
 
-    int updateOrder(OrderDO orderDO);
+    AccountDO selectAccountById(@Param("userId") Long userId);
 }

@@ -2,11 +2,11 @@ package com.sunday.controller;
 
 import com.sunday.entities.common.R;
 import com.sunday.entities.domain.OrderDO;
-import com.sunday.service.OrderService;
+import com.sunday.entities.domain.StorageDO;
+import com.sunday.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
@@ -21,14 +21,14 @@ import java.math.BigDecimal;
  * @Version: 1.0
  */
 @RestController
-@RequestMapping("order")
-public class OrderController {
+@RequestMapping("storage")
+public class StorageController {
 
     @Autowired
-    OrderService orderService;
+    StorageService storageService;
 
-    @GetMapping("create")
-    public R<Boolean> create(@RequestParam Long userId, @RequestParam Long productId, @RequestParam Integer count) {
-        return R.success(orderService.create(userId, productId, count));
+    @GetMapping("changeStorage")
+    public R<Boolean> changeStorage(Long productId, Integer count) {
+        return R.success(storageService.changeStorage(productId, count));
     }
 }

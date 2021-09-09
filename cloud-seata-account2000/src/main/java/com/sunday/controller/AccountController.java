@@ -1,12 +1,10 @@
 package com.sunday.controller;
 
 import com.sunday.entities.common.R;
-import com.sunday.entities.domain.OrderDO;
-import com.sunday.service.OrderService;
+import com.sunday.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
@@ -21,14 +19,14 @@ import java.math.BigDecimal;
  * @Version: 1.0
  */
 @RestController
-@RequestMapping("order")
-public class OrderController {
+@RequestMapping("account")
+public class AccountController {
 
     @Autowired
-    OrderService orderService;
+    AccountService accountService;
 
-    @GetMapping("create")
-    public R<Boolean> create(@RequestParam Long userId, @RequestParam Long productId, @RequestParam Integer count) {
-        return R.success(orderService.create(userId, productId, count));
+    @GetMapping("changeAccount")
+    public R<Boolean> changeAccount(Long userId, BigDecimal money) {
+        return R.success(accountService.changeAccount(userId, money));
     }
 }

@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 /**
  * @ProjectName: springclouddemo
  * @Package: com.sunday.service.impl
@@ -24,10 +26,15 @@ public class OrderServiceImpl implements OrderService {
     OrderMapper orderMapper;
 
     @Override
-    public Boolean create(OrderDO orderDO) {
+    public Boolean create(Long userId, Long productId, Integer count) {
         log.info("创建订单开始。。。");
-        int insert = orderMapper.insert(orderDO);
+        OrderDO orderDO = OrderDO.builder().count(count).money(BigDecimal.ONE.multiply(BigDecimal.valueOf(count))).productId(productId).userId(userId).status(0).build();
+        orderMapper.insertOrder(orderDO);
         log.info("创建订单结束。。。");
-        return insert > 0;
+
+        // 扣减库存和资产后修改订单状态
+        orderDO.setStatus(1);
+        int i = orderMapper.updateOrder(orderDO);
+        return i > 0;
     }
 }

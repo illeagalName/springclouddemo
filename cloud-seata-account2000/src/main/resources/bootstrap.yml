@@ -1,13 +1,13 @@
 server:
-  port: 2001
+  port: 2000
 spring:
   application:
-    name: order-service
+    name: account-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username:
     password:
-    url: jdbc:mysql://ip:3306/seata_order?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+    url: jdbc:mysql://ip:3306/seata_account?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
   cloud:
     nacos:
       discovery:
@@ -33,7 +33,7 @@ seata:
       namespace: 13b590ee-4cb0-4f0d-b98a-675ad41b7063
       # 需要server端(registry和config)、nacos配置client端(registry和config)保持一致
       group: SEATA_GROUP
-      username: "nacos"
+      username: ""
       password: ""
   registry:
     type: nacos
@@ -43,7 +43,7 @@ seata:
       server-addr: 127.0.0.1:8848
       namespace: 13b590ee-4cb0-4f0d-b98a-675ad41b7063
       group: SEATA_GROUP
-      username: "nacos"
+      username: ""
       password: ""
 
 mybatis:
