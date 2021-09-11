@@ -1,5 +1,5 @@
 # springclouddemo
-``业余时间根据B站学习的，后面会整理一下``
+``业余时间根据B站学习的，后面会整理一下（B站上讲的有很大一部分版本比较旧了，学习的时候需要结合自己当时的环境适当改进）``
 
 hystrix 在SpringCloud 2020.0.3亦或许之前版本里，被废弃了部分注解，并且阿里巴巴的sentinal更优秀，因此hystrix的demo完成了一小部分而已
 
@@ -55,3 +55,16 @@ AP模式不支持数据一致性，所以只支持服务注册的临时实例，
 2.正常启动后又遇到[NACOS Exception httpPost] currentServerAddr: http://123.56.25.210:8848
 
     按照github issue的解决方法 就是把clashX关掉即可，一般不翻墙的可能还遇不到，卧槽
+
+
+-----------------------------------------------------
+cloud-seata-order/storage/account 三个微服务是为了完成seata测试，三个微服务对应三个数据库
+
+seata版本：1.4.2 
+nacos版本：2.0.2
+mysql版本：8.0.21
+
+我用的springcloud版本已经移除了hystrix和ribbon，需要引入sentinel和loadbalancer
+对于断路器Circuit Breaker，目前能选择的只有sentinel和resilience4j(这个还未实践测试)，hystrix停更，retry应该不是面向微服务的
+
+配置相对于以前的版本，简化了一些，不过它的配置和原理本身就很繁琐。我只完成了配置和测试，至于原理，后面整理
