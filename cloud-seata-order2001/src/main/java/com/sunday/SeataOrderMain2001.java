@@ -2,6 +2,7 @@ package com.sunday;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @ProjectName: springclouddemo
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version: 1.0
  */
 @SpringBootApplication
+@EnableFeignClients
 public class SeataOrderMain2001 {
     public static void main(String[] args) {
         SpringApplication.run(SeataOrderMain2001.class, args);

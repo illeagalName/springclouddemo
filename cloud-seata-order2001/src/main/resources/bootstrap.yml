@@ -4,10 +4,30 @@ spring:
   application:
     name: order-service
   datasource:
+    druid:
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: 123456
+      initial-size: 5
+      min-idle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,slf4j
+      connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
     driver-class-name: com.mysql.cj.jdbc.Driver
     username:
     password:
     url: jdbc:mysql://ip:3306/seata_order?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+    type: com.alibaba.druid.pool.DruidDataSource
   cloud:
     nacos:
       discovery:
@@ -59,3 +79,6 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: full #配置日志打印的信息格式，与创建Logger.Level的bean方式一致，不过配置好后必须配置下面的logging.level才能看到信息
+  sentinel:
+    enabled: false
+

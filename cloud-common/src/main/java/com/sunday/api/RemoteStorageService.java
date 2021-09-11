@@ -6,6 +6,7 @@ import com.sunday.constant.ServiceNameConstants;
 import com.sunday.entities.common.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
@@ -15,6 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @FeignClient(contextId = "remoteStorageService", value = ServiceNameConstants.STORAGE_SERVICE, fallbackFactory = StorageFallbackFactory.class)
 public interface RemoteStorageService {
-    @GetMapping("changeStorage")
-    R<Boolean> changeStorage(Long productId, Integer count);
+    @GetMapping("/storage/changeStorage")
+    R<Boolean> changeStorage(@RequestParam("productId") Long productId, @RequestParam("count") Integer count);
 }

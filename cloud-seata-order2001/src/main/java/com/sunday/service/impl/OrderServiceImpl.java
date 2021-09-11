@@ -1,10 +1,13 @@
 package com.sunday.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.sunday.api.RemoteAccountService;
 import com.sunday.api.RemoteStorageService;
 import com.sunday.dao.OrderMapper;
+import com.sunday.entities.common.R;
 import com.sunday.entities.domain.OrderDO;
 import com.sunday.service.OrderService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,21 +38,24 @@ public class OrderServiceImpl implements OrderService {
     RemoteAccountService remoteAccountService;
 
     @Override
-    public Boolean create(Long userId, Long productId, Integer count) {
+    @GlobalTransactional
+    // 模拟异常的话，需要将feign.sentinel.enabled设置为false，不能使用降级兜底策略
+    public Boolean create(OrderDO orderDO) {
         log.info("流程开始");
-        BigDecimal money = BigDecimal.ONE.multiply(BigDecimal.valueOf(count));
 
-        log.info("创建订单开始。。。");
-        OrderDO orderDO = OrderDO.builder().count(count).money(money).productId(productId).userId(userId).status(0).build();
-        orderMapper.insertOrder(orderDO);
-        log.info("创建订单结束。。。");
+        BigDecimal money = orderDO.getMoney();
+        Integer count = orderDO.getCount();
+        Long productId = orderDO.getProductId();
+        Long userId = orderDO.getUserId();
 
         log.info("扣库存开始。。。");
-        remoteStorageService.changeStorage(productId, count);
+        R<Boolean> booleanR = remoteStorageService.changeStorage(productId, count);
+        log.info("扣库存返回数据 {}", JSON.toJSONString(booleanR));
         log.info("扣库存开始。。。");
 
         log.info("扣资产开始。。。");
-        remoteAccountService.changeAccount(userId, money);
+        R<Boolean> booleanR1 = remoteAccountService.changeAccount(userId, money);
+        log.info("扣资产返回数据 {}", JSON.toJSONString(booleanR1));
         log.info("扣资产开始。。。");
 
         // 扣减库存和资产后修改订单状态

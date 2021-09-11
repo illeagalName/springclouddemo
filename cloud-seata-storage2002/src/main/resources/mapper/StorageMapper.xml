@@ -6,11 +6,11 @@
         update t_storage
         set used    = #{used},
             residue = #{residue}
-        where productId = #{productId}
+        where product_id = #{productId}
     </update>
     <select id="selectStorageById" resultType="StorageDO">
         select *
         from t_storage
-        where productId = #{productId}
+        where product_id = #{productId}
     </select>
 </mapper>

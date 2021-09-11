@@ -34,6 +34,9 @@ public class AccountServiceImpl implements AccountService {
         accountDO.setResidue(accountDO.getResidue().subtract(money));
         log.info("减资产开始。。。");
         int insert = accountMapper.changeAccount(accountDO);
+
+        // 最后一步模拟异常
+        int i = 10 / 0;
         log.info("减资产结束。。。");
         return insert > 0;
     }

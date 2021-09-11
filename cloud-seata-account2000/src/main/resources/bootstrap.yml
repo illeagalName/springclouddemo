@@ -33,7 +33,7 @@ seata:
       namespace: 13b590ee-4cb0-4f0d-b98a-675ad41b7063
       # 需要server端(registry和config)、nacos配置client端(registry和config)保持一致
       group: SEATA_GROUP
-      username: ""
+      username: "nacos"
       password: ""
   registry:
     type: nacos
@@ -43,7 +43,7 @@ seata:
       server-addr: 127.0.0.1:8848
       namespace: 13b590ee-4cb0-4f0d-b98a-675ad41b7063
       group: SEATA_GROUP
-      username: ""
+      username: "nacos"
       password: ""
 
 mybatis:

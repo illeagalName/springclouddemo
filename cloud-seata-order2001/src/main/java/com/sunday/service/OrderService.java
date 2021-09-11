@@ -12,5 +12,5 @@ import com.sunday.entities.domain.OrderDO;
  * @Version: 1.0
  */
 public interface OrderService {
-    Boolean create(Long userId, Long productId, Integer count);
+    Boolean create(OrderDO orderDO);
 }
