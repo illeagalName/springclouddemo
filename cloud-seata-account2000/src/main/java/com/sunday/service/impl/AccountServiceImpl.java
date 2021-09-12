@@ -36,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
         int insert = accountMapper.changeAccount(accountDO);
 
         // 最后一步模拟异常
-        int i = 10 / 0;
+//        int i = 10 / 0;
         log.info("减资产结束。。。");
         return insert > 0;
     }
